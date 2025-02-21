@@ -7,5 +7,8 @@
 @endsection
 
 @section('content')
-    <h1>Home</h1>
+    <div class="row">
+        <img src="{{ asset('assets/img/ramadhanfest2.jpeg') }}" alt="Image" class="img-thumbnail" width="100%">
+        <img src="{{ asset('assets/img/ramadhanfest3.jpeg') }}" alt="Image" class="img-thumbnail" width="100%">
+    </div>
 @endsection

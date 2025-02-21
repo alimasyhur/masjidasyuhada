@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->string('identity');
-            $table->string('email');
+            $table->string('identity')->unique();
+            $table->string('email')->unique();
             $table->string('fullname');
-            $table->string('wa_number');
+            $table->string('wa_number')->unique();
             $table->string('address');
             $table->integer('point_total');
-            $table->boolean('is_checked');
-            $table->timestamp('date_checked');
+            $table->boolean('is_checked')->default(false);
+            $table->timestamp('date_checked')->nullable();
             $table->timestamps();
         });
     }

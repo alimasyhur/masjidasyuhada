@@ -14,6 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body class="hold-transition layout-top-nav">
 
@@ -28,12 +29,9 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
                     </ul>
-
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">Home</a>
@@ -41,8 +39,22 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('event') }}">Event</a>
                         </li>
-                        <!-- Authentication Links -->
-                        @guest
+                        @if(Session::has('member'))
+                        <li>
+                            <a class="nav-link" href="{{ route('public.members.login_success') }}">My Profile</a>
+                        </li>
+                        @else
+                        <li>
+                            <a class="nav-link" href="{{ route('public.members.index') }}">Daftar</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ route('public.members.login') }}">Login</a>
+                        </li>
+                        @endif
+                        <!-- <li>
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li> -->
+                        <!-- @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -66,7 +78,7 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        @endguest -->
                     </ul>
                 </div>
             </div>
