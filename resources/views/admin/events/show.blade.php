@@ -18,6 +18,8 @@
             <p><strong>Images:</strong></p>
             <img src="{{ $event->image_first }}" alt="First Image" class="img-fluid" style="max-width: 200px;">
             <img src="{{ $event->image_second }}" alt="Second Image" class="img-fluid" style="max-width: 200px;">
+            <p><strong>Tanggal Mulai:</strong> {{ $event->start_date }}</p>
+            <p><strong>Tanggal Selesai:</strong> {{ $event->end_date }}</p>
         </div>
         <div class="card-footer">
             <a href="{{ route('dashboard.events.index') }}" class="btn btn-secondary">Back</a>

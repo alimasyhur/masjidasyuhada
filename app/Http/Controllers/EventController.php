@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AttendanceMember;
 use App\Models\Event;
+use App\Models\EventAttendance;
+use App\Models\MemberEvent;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,7 +17,10 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
+        $now = Carbon::now();
+        $events = Event::where('start_date', '<=', $now)
+            ->where('end_date', '>=', $now)
+            ->get();
         return view('public.event.home', compact('events'));
     }
 
@@ -37,6 +45,8 @@ class EventController extends Controller
                 'image_first' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
                 'image_second' => 'image|mimes:jpg,jpeg,png,gif|max:2048',
                 'point' => 'required|integer',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date',
             ]);
 
             $imagePath = date('Y') . '/' . date('m') . '/' . date('d') . '/' . 'images';
@@ -60,11 +70,12 @@ class EventController extends Controller
                 'image_first' => $imageFirstUrl,
                 'image_second' => $imageSecondUrl,
                 'point' => $request->point,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
             ]);
 
             return redirect()->route('dashboard.events.index')->with('success', 'Event created successfully!');
         } catch (Exception $e) {
-            dd($e);
             return back()->withErrors(['upload_error' => 'File upload failed. Please try again later.'])
                          ->withInput();
         }
@@ -75,9 +86,47 @@ class EventController extends Controller
         return view('admin.events.show', compact('event'));
     }
 
+    public function attendance(Event $event)
+    {
+        $attendanceMembers = AttendanceMember::select(
+                'attendance_members.event_id',
+                'attendance_members.member_id',
+                'members.identity',
+                'members.email',
+                'members.fullname',
+                'members.wa_number',
+                'attendance_members.date_attendance',
+            )->join('members', 'attendance_members.member_id', '=', 'members.id')
+            ->where('attendance_members.event_id', $event->id)
+            ->orderBy('attendance_members.date_attendance', 'desc')
+            ->get();
+
+        $totalAttendance = count($attendanceMembers);
+
+        return view('admin.events.attendance', compact('event', 'attendanceMembers', 'totalAttendance'));
+    }
+
     public function publicShow(Event $event)
     {
-        return view('public.event.show', compact('event'));
+        $member = Session::get('member');
+        $eventID = $event->id;
+
+        $isRegistered = false;
+        $isLogin = false;
+
+        if (!empty($member)) {
+            $memberID = $member->id;
+            $memberEvent = MemberEvent::where('member_id', $memberID)
+                ->where('event_id', $eventID)
+                ->first();
+
+            $isLogin = true;
+            if (!empty($memberEvent)) {
+                $isRegistered = true;
+            }
+        }
+
+        return view('public.event.show', compact('event', 'isRegistered', 'isLogin'));
     }
 
     public function edit(Event $event)
@@ -105,5 +154,21 @@ class EventController extends Controller
     {
         $event->delete();
         return redirect()->route('dashboard.events.index')->with('success', 'Event deleted successfully!');
+    }
+
+    public function register(Event $event)
+    {
+        $member = Session::get('member');
+        $existMemberEvent = MemberEvent::where('member_id', $member->id)
+            ->where('event_id', $event->id)
+            ->count();
+        if (empty($existMemberEvent)) {
+            MemberEvent::create([
+                'event_id' => $event->id,
+                'member_id' => $member->id,
+            ]);
+        }
+
+        return redirect()->route('event.show', $event)->with('success', 'Berhasil mendaftar event!');
     }
 }

@@ -18,6 +18,8 @@ class Event extends Model
         'image_first',
         'image_second',
         'point',
+        'start_date',
+        'end_date',
     ];
 
     public static function boot()

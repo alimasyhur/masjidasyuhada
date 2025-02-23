@@ -26,17 +26,29 @@ Auth::routes();
 Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::get('/event', [EventController::class, 'index'])->name('event');
 Route::get('/events/{event}', [EventController::class, 'publicShow'])->name('event.show');
-
+Route::get('/events/register/{event}', [EventController::class, 'register'])
+    ->name('event.register')
+    ->middleware('member.session.key');
 
 Route::prefix('dashboard')->group(function() {
+    // events
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.events.index');
     Route::get('/events', [EventController::class, 'adminIndex'])->name('dashboard.events.index')->middleware('auth');
     Route::get('/events/create', [EventController::class, 'create'])->name('dashboard.events.create')->middleware('auth');
     Route::post('/events', [EventController::class, 'store'])->name('dashboard.events.store')->middleware('auth');
     Route::get('/events/{event}', [EventController::class, 'show'])->name('dashboard.events.show')->middleware('auth');
+    Route::get('/events/{event}/attendance', [EventController::class, 'attendance'])->name('dashboard.events.attendance')->middleware('auth');
     Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('dashboard.events.edit')->middleware('auth');
     Route::put('/events/{event}', [EventController::class, 'update'])->name('dashboard.events.update')->middleware('auth');
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('dashboard.events.destroy')->middleware('auth');
+
+    // members
+    Route::post('/members-attendances', [MemberController::class, 'storeAttendance'])->name('dashboard.members.storeAttendance')->middleware('auth');
+    Route::get('/members', [MemberController::class, 'adminIndex'])->name('dashboard.members.index')->middleware('auth');
+    Route::get('/members/{member}', [MemberController::class, 'show'])->name('dashboard.members.show')->middleware('auth');
+    Route::get('/members/{member}/edit', [MemberController::class, 'edit'])->name('dashboard.members.edit')->middleware('auth');
+    Route::put('/members/{member}', [MemberController::class, 'update'])->name('dashboard.members.update')->middleware('auth');
+    Route::delete('/members/{member}', [MemberController::class, 'destroy'])->name('dashboard.members.destroy')->middleware('auth');
 });
 
 Route::prefix('daftar')->group(function() {

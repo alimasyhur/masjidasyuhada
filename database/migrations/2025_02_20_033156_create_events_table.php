@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('image_first');
             $table->string('image_second');
             $table->integer('point');
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
             $table->timestamps();
         });
     }

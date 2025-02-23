@@ -312,6 +312,12 @@ return [
             'icon' => 'fas fa-home',
             'can'  => 'isLoggedIn', // Menu ini hanya muncul jika user login
         ],
+        [
+            'text' => 'Member',
+            'url'  => 'dashboard/members',
+            'icon' => 'fas fa-user',
+            'can'  => 'isLoggedIn', // Menu ini hanya muncul jika user login
+        ],
         // // Navbar items:
         // [
         //     'type' => 'navbar-search',
