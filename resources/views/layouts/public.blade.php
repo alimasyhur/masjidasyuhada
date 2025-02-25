@@ -52,7 +52,7 @@
                             <a class="nav-link" href="{{ route('public.members.index') }}">Daftar</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="{{ route('public.members.login_msp') }}">Login</a>
+                            <a class="nav-link" href="{{ route('public.members.login') }}">Login</a>
                         </li>
                         @endif
                     </ul>

@@ -24,7 +24,7 @@
                 <p>Alamat Lengkap: {{ $relawan->address }}</p>
                 <p>Frequency: {{ $relawan->frequency }}</p>
 
-                <a href="{{ route('public.relawans.logout') }}" class="btn btn-danger">Logout</a>
+                <a href="{{ route('public.members.logout') }}" class="btn btn-danger">Logout</a>
                 <a href="{{ route('event') }}" class="btn btn-secondary">Back</a>
 
             </div>

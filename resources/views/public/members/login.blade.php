@@ -3,12 +3,12 @@
 @section('title', 'Login')
 
 @section('header')
-    Login Member
+    Login Member dan Relawan
 @endsection
 
 @section('content')
     <div class="row">
-        <h1>Login Member</h1>
+        <h1>Login Member dan Relawan</h1>
     </div>
 
     <div class="row">

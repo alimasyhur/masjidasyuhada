@@ -17,7 +17,7 @@ class MemberSessionKey
     public function handle(Request $request, Closure $next): Response
     {
         if (!Session::has('member') && !Session::has('relawan')) {
-            return redirect()->route('public.members.login_msp');
+            return redirect()->route('public.members.login');
         }
 
         return $next($request);

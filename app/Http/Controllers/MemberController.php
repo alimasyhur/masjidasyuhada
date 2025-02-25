@@ -105,14 +105,25 @@ class MemberController extends Controller
             ->where('email', $request->email)
             ->first();
 
-        if (empty($member)) {
-            return back()->with('error', 'Email atau Nomor Whatsapp Anda tidak diketahu. Silkan melakukan registrasi');
+        if (!empty($member)) {
+            Session::put('member', $member);
+
+            return redirect()->route('public.members.login_success')
+                ->with('success', 'Login berhasil');
         }
 
-        Session::put('member', $member);
+        $relawan = Relawan::where('wa_number', $request->wa_number)
+                ->where('email', $request->email)
+                ->first();
 
-        return redirect()->route('public.members.login_success')
+        if (!empty($relawan)) {
+            Session::put('relawan', $relawan);
+
+            return redirect()->route('public.relawans.login_success')
                 ->with('success', 'Login berhasil');
+        }
+
+        return back()->with('error', 'Email atau Nomor Whatsapp Anda tidak diketahu. Silkan melakukan registrasi');
     }
 
     public function loginSuccess()
@@ -129,6 +140,7 @@ class MemberController extends Controller
     public function logout()
     {
         Session::flush('member');
+        Session::flush('relawan');
         return view('public.members.login');
     }
 
@@ -211,65 +223,4 @@ class MemberController extends Controller
             return back()->with('error', 'Error saving attendance');
         }
     }
-
-    // public function create()
-    // {
-    //     return view('admin.events.create');
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     try {
-    //         $request->validate([
-    //             'title' => 'required|unique:events',
-    //             'description' => 'required',
-    //             'broadcast_text' => 'required',
-    //             'image_first' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
-    //             'image_second' => 'image|mimes:jpg,jpeg,png,gif|max:2048',
-    //             'point' => 'required|integer',
-    //         ]);
-
-    //         $imagePath = date('Y') . '/' . date('m') . '/' . date('d') . '/' . 'images';
-    //         if ($request->hasFile('image_first') && $request->file('image_first')->isValid()) {
-    //             $imageFirstPath = $request->file('image_first')->store($imagePath, 'public');
-    //             $imageFirstUrl = Storage::url($imageFirstPath);
-    //         } else {
-    //             return back()->withErrors(['image_first' => 'Image First is required or invalid']);
-    //         }
-
-    //         if ($request->hasFile('image_second') && $request->file('image_second')->isValid()) {
-    //             $imageSecondPath = $request->file('image_second')->store($imagePath, 'public');
-    //             $imageSecondUrl = Storage::url($imageSecondPath);
-    //         }
-
-    //         Event::create([
-    //             'title' => $request->title,
-    //             'description' => $request->description,
-    //             'slug' => Str::slug($request->title),
-    //             'broadcast_text' => $request->broadcast_text,
-    //             'image_first' => $imageFirstUrl,
-    //             'image_second' => $imageSecondUrl,
-    //             'point' => $request->point,
-    //         ]);
-
-    //         return redirect()->route('dashboard.events.index')->with('success', 'Event created successfully!');
-    //     } catch (Exception $e) {
-    //         dd($e);
-    //         return back()->withErrors(['upload_error' => 'File upload failed. Please try again later.'])
-    //                      ->withInput();
-    //     }
-    // }
-
-
-
-    // public function publicShow(Event $event)
-    // {
-    //     return view('public.event.show', compact('event'));
-    // }
-
-    // public function destroy(Event $event)
-    // {
-    //     $event->delete();
-    //     return redirect()->route('dashboard.events.index')->with('success', 'Event deleted successfully!');
-    // }
 }
