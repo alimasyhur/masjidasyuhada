@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\AttendanceMember;
 use App\Models\Event;
-use App\Models\EventAttendance;
 use App\Models\MemberEvent;
 use Carbon\Carbon;
 use Exception;
@@ -113,6 +112,7 @@ class EventController extends Controller
 
         $isRegistered = false;
         $isLogin = false;
+        $isLoginRelawan = false;
 
         if (!empty($member)) {
             $memberID = $member->id;
@@ -126,7 +126,13 @@ class EventController extends Controller
             }
         }
 
-        return view('public.event.show', compact('event', 'isRegistered', 'isLogin'));
+
+        $relawan = Session::get('relawan');
+        if (!empty($relawan)) {
+            $isLoginRelawan = true;
+        }
+
+        return view('public.event.show', compact('event', 'isRegistered', 'isLogin', 'isLoginRelawan'));
     }
 
     public function edit(Event $event)

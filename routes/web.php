@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\RelawanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,7 +49,13 @@ Route::prefix('dashboard')->group(function() {
     Route::get('/members/{member}', [MemberController::class, 'show'])->name('dashboard.members.show')->middleware('auth');
     Route::get('/members/{member}/edit', [MemberController::class, 'edit'])->name('dashboard.members.edit')->middleware('auth');
     Route::put('/members/{member}', [MemberController::class, 'update'])->name('dashboard.members.update')->middleware('auth');
-    Route::delete('/members/{member}', [MemberController::class, 'destroy'])->name('dashboard.members.destroy')->middleware('auth');
+
+    // relawans
+    Route::post('/relawans-attendances', [RelawanController::class, 'storeAttendance'])->name('dashboard.relawans.storeAttendance')->middleware('auth');
+    Route::get('/relawans', [MemberController::class, 'adminIndex'])->name('dashboard.relawans.index')->middleware('auth');
+    Route::get('/relawans/{relawan}', [MemberController::class, 'show'])->name('dashboard.relawans.show')->middleware('auth');
+    Route::get('/relawans/{relawan}/edit', [MemberController::class, 'edit'])->name('dashboard.relawans.edit')->middleware('auth');
+    Route::put('/relawans/{relawan}', [MemberController::class, 'update'])->name('dashboard.relawans.update')->middleware('auth');
 });
 
 Route::prefix('daftar')->group(function() {
@@ -56,11 +63,24 @@ Route::prefix('daftar')->group(function() {
     Route::get('/members/register', [MemberController::class, 'register'])->name('public.members.register');
     Route::post('/members', [MemberController::class, 'store'])->name('public.members.store');
     Route::get('/members/register_success', [MemberController::class, 'registerSuccess'])->name('public.members.register_success');
+
+    Route::get('/relawans/register', [RelawanController::class, 'register'])->name('public.relawans.register');
+    Route::post('/relawans', [RelawanController::class, 'store'])->name('public.relawans.store');
+    Route::get('/relawans/register_success', [RelawanController::class, 'registerSuccess'])->name('public.relawans.register_success');
 });
+
+Route::get('/login-msp', [MemberController::class, 'loginMsp'])->name('public.members.login_msp');
 
 Route::prefix('login-member')->group(function() {
     Route::get('/login', [MemberController::class, 'login'])->name('public.members.login');
     Route::post('/login', [MemberController::class, 'storeLogin'])->name('public.members.storeLogin');
     Route::get('/login_success', [MemberController::class, 'loginSuccess'])->name('public.members.login_success')->middleware('member.session.key');
     Route::get('/logout', [MemberController::class, 'logout'])->name('public.members.logout')->middleware('member.session.key');
+});
+
+Route::prefix('login-relawan')->group(function() {
+    Route::get('/login', [RelawanController::class, 'login'])->name('public.relawans.login');
+    Route::post('/login', [RelawanController::class, 'storeLogin'])->name('public.relawans.storeLogin');
+    Route::get('/login_success', [RelawanController::class, 'loginSuccess'])->name('public.relawans.login_success')->middleware('member.session.key');
+    Route::get('/logout', [RelawanController::class, 'logout'])->name('public.relawans.logout')->middleware('member.session.key');
 });

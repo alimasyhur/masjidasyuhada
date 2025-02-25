@@ -1,14 +1,14 @@
 @extends('layouts.public')
 
-@section('title', 'Pendaftaran')
+@section('title', 'Login')
 
 @section('header')
-    Event
+    Login MSP
 @endsection
 
 @section('content')
     <div class="row">
-        <h1>Pendaftaran</h1>
+        <h1>Login</h1>
     </div>
 
 
@@ -17,9 +17,8 @@
             <div class="card card-primary card-outline mb-4">
                 <div class="card-header"><div class="card-title">Member</div></div>
                 <div class="card-body">
-                    <h3>Daftar Member</h3>
-                    <p>Dengan mendaftar member, Anda akan mendapatkan reward koin selama mengikuti kegiatan Ramadhan di Masjid Sejuta Pemuda</p>
-                    <a href="{{ route('public.members.register') }}" class="btn btn-primary mb-2">Daftar</a>
+                    <h3>Login Member</h3>
+                    <a href="{{ route('public.members.login') }}" class="btn btn-success mb-2">Login</a>
                 </div>
             </div>
         </div>
@@ -27,9 +26,8 @@
             <div class="card card-primary card-outline mb-4">
                 <div class="card-header"><div class="card-title">Relawan</div></div>
                 <div class="card-body">
-                    <h3>Daftar Relawan</h3>
-                    <p>Dengan mendaftar relawan, Anda akan mendapatkan reward koin selama menjadi relawan dan mengikuti kegiatan Ramadhan di Masjid Sejuta Pemuda</p>
-                    <a href="{{ route('public.relawans.register') }}" class="btn btn-primary mb-2">Daftar</a>
+                    <h3>Login Relawan</h3>
+                    <a href="{{ route('public.relawans.login') }}" class="btn btn-success mb-2">Login</a>
                 </div>
             </div>
         </div>

@@ -27,7 +27,9 @@
             <img src="{{ $event->image_second }}" alt="Second Image" class="img-fluid" style="max-width: 200px;">
         </div>
         <div class="card-footer">
-            @if($isLogin)
+            @if($isLoginRelawan)
+
+            @elseif($isLogin)
                 @if($isRegistered)
                     <a href="#" class="btn btn-info">Anda sudah mendaftar</a>
                 @else

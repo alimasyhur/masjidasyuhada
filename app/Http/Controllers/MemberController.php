@@ -6,6 +6,7 @@ use App\Models\AttendanceMember;
 use App\Models\Event;
 use App\Models\Member;
 use App\Models\MemberEvent;
+use App\Models\Relawan;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Session;
@@ -16,6 +17,11 @@ class MemberController extends Controller
     public function index()
     {
         return view('public.members.index');
+    }
+
+    public function loginMsp()
+    {
+        return view('public.members.login_msp');
     }
 
     public function register()
@@ -39,6 +45,14 @@ class MemberController extends Controller
 
             if ($existingMember) {
                 return back()->with('error', 'Email atau Nomor Whatsapp Anda sudah terdaftar');
+            }
+
+            $relawan = Relawan::where('wa_number', $request->wa_number)
+                ->where('email', $request->email)
+                ->first();
+
+            if (!empty($relawan)) {
+                return back()->with('error', 'Email atau Nomor Whatsapp Anda sudah terdaftar sebagai relawan. Tidak dapat mendaftar sebagai member');
             }
 
             $threeDigitPhone = substr($request->wa_number, -3);

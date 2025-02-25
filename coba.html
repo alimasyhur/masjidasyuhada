@@ -1,0 +1,149 @@
+<style>
+    .loops-group {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .loops-group label {
+        font-weight: bold;
+    }
+
+    .loops-group input {
+        display: block;
+        width: 100%;
+        height: 36px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    .loops-group select {
+        display: block;
+        width: 100%;
+        height: 45px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        color: #7A7A7A;
+        padding: 5px 15px;
+        background: white;
+    }
+
+    .loops-group textarea {
+        display: block;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    .loops-group input.loops-submit {
+        background: #81bd4b;
+        color: #fff;
+    }
+
+    .loops-footer {
+        font-size: 11px;
+        color: #ccc;
+        font-style: italic;
+    }
+
+    .red {
+        color: #B30000;
+    }
+</style>
+<form id="loops-form-order" class="loops-forms" action="https://app.loops.id/save-order/infaq-mul-2" method="POST">
+    <input type="hidden" name="product" value="[META] INFAQ">
+    <div class="loops-group">
+        <label for="variants">&nbsp;</label>
+        <label for="variants-input">Pilih varian <span class="red">*</span></label>
+        <div class="loops-group variants-wrapper">
+            <select id="variants" name="variants[Nominal INFAQ ]" style="margin-bottom:3px;" required>
+                <option value="">Pilih Nominal INFAQ </option>
+                <option value="Rp100.000">Rp100.000</option>
+                <option value="Rp200.000">Rp200.000</option>
+                <option value="Rp300.000">Rp300.000</option>
+                <option value="Rp500.000">Rp500.000</option>
+                <option value="Rp1.000.000">Rp1.000.000</option>
+                <option value="Rp1.500.000">Rp1.500.000</option>
+                <option value="Rp3.000.000">Rp3.000.000</option>
+            </select>
+
+        </div>
+    </div>
+
+    <div class="loops-group">
+        <label for="name">Nama <span class="red">*</span></label>
+        <input type="text" id="name" name="name" value="" placeholder="Tulis nama Anda" required>
+    </div>
+    <div class="loops-group">
+        <label for="phone">No HP <span class="red">*</span></label>
+        <input type="text" id="phone" name="phone" value=""
+            placeholder="Sebutkan nomor HP aktif Anda: contoh 081234567890" pattern="[0]{1}[0-9]{8,12}" required>
+    </div>
+    <div class="loops-group">
+        <input id="loops-form-submit" type="submit" value="Sedekah Disini" class="loops-submit">
+    </div>
+    <input type="hidden" id="current" name="current" value="">
+    <input type="hidden" name="redirect" value="">
+    <input type="hidden" name="_loops_nonce" value="">
+    <p class="loops-footer">Powered by <a
+            href="https://loops.id/?utm_source=form-embed&utm_content=279916">Loops.id</a>.</p>
+</form>
+<script>
+    var form = document.getElementById('loops-form-order');
+    var loopsFormBtn = document.getElementById('loops-form-submit');
+    var submiting = false;
+
+    loopsFormBtn.addEventListener('click', function (event) {
+
+        console.log('clicking');
+
+        if (submiting) {
+            setTimeout(function () {
+                event.target.disabled = true;
+            }, 0);
+        }
+
+    });
+
+    form.addEventListener('submit', function (e) {
+        console.log('submiting');
+        if (!submiting) {
+
+
+
+
+
+
+        }
+
+        submiting = true;
+
+    });
+</script>
+<script>
+    function loopsFetchFbclid(linkId) {
+        console.log('ok');
+        try {
+
+            const LoopsUrl = new URL(window.location.href);
+            const loopsFBClid = LoopsUrl.searchParams.get('fbclid');
+            var loopsWaLink = document.getElementById(linkId).action;
+            const separator = loopsWaLink.includes('?') ? '&' : '?';
+
+            if (loopsFBClid) {
+                console.log(loopsWaLink);
+                console.log(loopsFBClid);
+                loopsWaLink = ⁠ ${ loopsWaLink }${ separator }${ 'fbclid' }=${ loopsFBClid } ⁠;
+                document.getElementById(linkId).setAttribute('action', loopsWaLink);
+            }
+
+            console.log(loopsWaLink);
+
+        } catch (error) {
+
+            console.log(error);
+        }
+    }
+
+    loopsFetchFbclid('loops-form-order');
+
+</script>

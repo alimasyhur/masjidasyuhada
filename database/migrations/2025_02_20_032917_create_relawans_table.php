@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('relawans', function (Blueprint $table) {
             $table->id();
+            $table->string('identity');
             $table->string('email');
             $table->string('fullname');
             $table->string('wa_number');
             $table->string('address');
             $table->integer('frequency');
+            $table->boolean('is_checked')->default(false);
+            $table->timestamp('date_checked')->nullable();
             $table->timestamps();
         });
     }
