@@ -52,10 +52,10 @@ Route::prefix('dashboard')->group(function() {
 
     // relawans
     Route::post('/relawans-attendances', [RelawanController::class, 'storeAttendance'])->name('dashboard.relawans.storeAttendance')->middleware('auth');
-    Route::get('/relawans', [MemberController::class, 'adminIndex'])->name('dashboard.relawans.index')->middleware('auth');
-    Route::get('/relawans/{relawan}', [MemberController::class, 'show'])->name('dashboard.relawans.show')->middleware('auth');
-    Route::get('/relawans/{relawan}/edit', [MemberController::class, 'edit'])->name('dashboard.relawans.edit')->middleware('auth');
-    Route::put('/relawans/{relawan}', [MemberController::class, 'update'])->name('dashboard.relawans.update')->middleware('auth');
+    Route::get('/relawans', [RelawanController::class, 'adminIndex'])->name('dashboard.relawans.index')->middleware('auth');
+    Route::get('/relawans/{relawan}', [RelawanController::class, 'show'])->name('dashboard.relawans.show')->middleware('auth');
+    Route::get('/relawans/{relawan}/edit', [RelawanController::class, 'edit'])->name('dashboard.relawans.edit')->middleware('auth');
+    Route::put('/relawans/{relawan}', [RelawanController::class, 'update'])->name('dashboard.relawans.update')->middleware('auth');
 });
 
 Route::prefix('daftar')->group(function() {

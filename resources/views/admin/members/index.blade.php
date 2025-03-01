@@ -10,7 +10,6 @@
 
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('dashboard.events.create') }}" class="btn btn-primary">Add Member</a>
         </div>
         <div class="card-body">
             <table class="table table-bordered">
