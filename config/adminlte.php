@@ -318,12 +318,12 @@ return [
             'icon' => 'fas fa-user',
             'can'  => 'isLoggedIn', // Menu ini hanya muncul jika user login
         ],
-        [
-            'text' => 'Relawan',
-            'url'  => 'dashboard/relawans',
-            'icon' => 'fas fa-users',
-            'can'  => 'isLoggedIn', // Menu ini hanya muncul jika user login
-        ],
+        // [
+        //     'text' => 'Relawan',
+        //     'url'  => 'dashboard/relawans',
+        //     'icon' => 'fas fa-users',
+        //     'can'  => 'isLoggedIn', // Menu ini hanya muncul jika user login
+        // ],
         // // Navbar items:
         // [
         //     'type' => 'navbar-search',

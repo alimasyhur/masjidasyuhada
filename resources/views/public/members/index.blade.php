@@ -13,23 +13,13 @@
 
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-12">
             <div class="card card-primary card-outline mb-4">
-                <div class="card-header"><div class="card-title">Member</div></div>
+                <div class="card-header"><div class="card-title">Ramadhan Fest Squad</div></div>
                 <div class="card-body">
-                    <h3>Daftar Member</h3>
+                    <h3>Daftar Ramadhan Fest Squad</h3>
                     <p>Dengan mendaftar member, Anda akan mendapatkan reward koin selama mengikuti kegiatan Ramadhan di Masjid Sejuta Pemuda</p>
                     <a href="{{ route('public.members.register') }}" class="btn btn-primary mb-2">Daftar</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="card card-primary card-outline mb-4">
-                <div class="card-header"><div class="card-title">Relawan</div></div>
-                <div class="card-body">
-                    <h3>Daftar Relawan</h3>
-                    <p>Dengan mendaftar relawan, Anda akan mendapatkan reward koin selama menjadi relawan dan mengikuti kegiatan Ramadhan di Masjid Sejuta Pemuda</p>
-                    <a href="{{ route('public.relawans.register') }}" class="btn btn-primary mb-2">Daftar</a>
                 </div>
             </div>
         </div>

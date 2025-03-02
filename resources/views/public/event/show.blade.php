@@ -21,7 +21,6 @@
 
             <p><strong>Description:</strong> {{ $event->description }}</p>
             <p><strong>Broadcast Text:</strong> {{ $event->broadcast_text }}</p>
-            <p><strong>Point:</strong> {{ $event->point }}</p>
             <p><strong>Images:</strong></p>
             <img src="{{ $event->image_first }}" alt="First Image" class="img-fluid" style="max-width: 200px;">
             <img src="{{ $event->image_second }}" alt="Second Image" class="img-fluid" style="max-width: 200px;">

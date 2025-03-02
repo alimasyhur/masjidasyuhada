@@ -49,7 +49,7 @@
                         </li>
                         @else
                         <li>
-                            <a class="nav-link" href="{{ route('public.members.index') }}">Daftar</a>
+                            <a class="nav-link" href="{{ route('public.members.register') }}">Daftar</a>
                         </li>
                         <li>
                             <a class="nav-link" href="{{ route('public.members.login') }}">Login</a>

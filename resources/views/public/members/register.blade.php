@@ -3,18 +3,18 @@
 @section('title', 'Pendaftaran')
 
 @section('header')
-    Registrasi Member
+    Registrasi Ramadhan Fest Squad
 @endsection
 
 @section('content')
     <div class="row">
-        <h1>Registrasi Member</h1>
+        <h1>Registrasi Ramadhan Fest Squad</h1>
     </div>
 
     <div class="row">
         <div class="col-12">
             <div class="card card-primary card-outline mb-4">
-                <div class="card-header"><div class="card-title">Registrasi Member</div></div>
+                <div class="card-header"><div class="card-title">Registrasi Ramadhan Fest Squad</div></div>
                     <div class="card-body">
 
                     @if(session('error'))

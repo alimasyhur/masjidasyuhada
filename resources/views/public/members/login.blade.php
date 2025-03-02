@@ -3,18 +3,18 @@
 @section('title', 'Login')
 
 @section('header')
-    Login Member dan Relawan
+    Login Ramadhan Fest Squad
 @endsection
 
 @section('content')
     <div class="row">
-        <h1>Login Member dan Relawan</h1>
+        <h1>Login Ramadhan Fest Squad</h1>
     </div>
 
     <div class="row">
         <div class="col-12">
             <div class="card card-primary card-outline mb-4">
-                <div class="card-header"><div class="card-title">Login Member</div></div>
+                <div class="card-header"><div class="card-title">Login Ramadhan Fest Squad</div></div>
                     <div class="card-body">
 
                     @if(session('error'))
