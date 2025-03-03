@@ -75,6 +75,7 @@ class EventController extends Controller
 
             return redirect()->route('dashboard.events.index')->with('success', 'Event created successfully!');
         } catch (Exception $e) {
+            dd($e);
             return back()->withErrors(['upload_error' => 'File upload failed. Please try again later.'])
                          ->withInput();
         }

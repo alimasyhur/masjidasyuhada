@@ -19,8 +19,7 @@
                         </div>
                         <div class="col-7">
                             <h5 class="card-title">{{ $event->title }}</h5>
-                            <p class="card-text">{{ $event->description }}</p>
-                            <p class="card-text">Point: {{ $event->description }}</p>
+                            <pre class="card-text">{{ $event->description }}</pre>
                         </div>
                         <div class="col-2">
                             <a href="{{ route('event.show', $event) }}" class="btn btn-primary">Lihat Detail</a>

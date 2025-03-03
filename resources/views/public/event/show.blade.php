@@ -19,11 +19,9 @@
                 </div>
             @endif
 
-            <p><strong>Description:</strong> {{ $event->description }}</p>
-            <p><strong>Broadcast Text:</strong> {{ $event->broadcast_text }}</p>
-            <p><strong>Images:</strong></p>
             <img src="{{ $event->image_first }}" alt="First Image" class="img-fluid" style="max-width: 200px;">
             <img src="{{ $event->image_second }}" alt="Second Image" class="img-fluid" style="max-width: 200px;">
+            <pre> {{ $event->description }}</pre>
         </div>
         <div class="card-footer">
             @if($isLoginRelawan)
