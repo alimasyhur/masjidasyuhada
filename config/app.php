@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'RamadhanFest'),
+    'name' => env('APP_NAME', 'Masjid Asy-Syuhada'),
 
     /*
     |--------------------------------------------------------------------------

@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Ramadhan Fest',
+    'title' => "Masjid Asy-Syuhada",
     'title_prefix' => '',
     'title_postfix' => '',
 
