@@ -16,13 +16,8 @@
     <link rel="shortcut icon" href="{{ asset('assets/img/logo.png') }}" type="image/x-icon">
 
 </head>
-<body class="hold-transition layout-top-nav">
-
-    <div id="app">
-        <main class="content m-5">
-            @yield('content')
-        </main>
-    </div>
+<body>
+    @yield('content')
 </body>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RMFSBJ21T"></script>
 <script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-5RMFSBJ21T');</script>
